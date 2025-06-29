@@ -33,10 +33,14 @@ Implements the **RSA public-key encryption** scheme.
    ```matlab
    p = 23;
    q = 17;
-2. Calculate:   
+2. Calculate:
+
 ![image](https://github.com/user-attachments/assets/13463c54-150b-4edc-9cd5-e96f9689d8d1)
+
 3. Define public and private keys:
+
 ![image](https://github.com/user-attachments/assets/9be66536-147d-4554-9319-e0b0a2a949f1)
+
 4. Encrypt and decrypt a sample message M = 8 to verify key functionality.
 
 ---
@@ -53,7 +57,9 @@ Selects key digits from a simulated IPv6 address.
 Modular Arithmetic-Based Hash
 
 Uses:
+
 ![image](https://github.com/user-attachments/assets/c1400996-28d9-4920-83e0-ee0d2629885a)
+
 Evaluation:
 Uses histograms to visualize request distribution
 
