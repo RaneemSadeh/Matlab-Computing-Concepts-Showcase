@@ -1,0 +1,139 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+#define matrix_size 100
+
+//draw rectangle (x1,y1) length L wedth W
+void rect (int x1, int y1,int L,int W, char arr[matrix_size][matrix_size]);
+//draw line (x1,y1) to (x2,y2)
+void line (int x1, int y1, int x2,int y2, char arr[matrix_size][matrix_size]);
+//draw circle center( a,b )  and radius=r
+void circle (int a, int b,int r,  char arr[matrix_size][matrix_size]);
+//drow Vertical line at x=x1 (x1,y1) to (x1,y2)
+void  vertical_Line (int x1, int y1, int y2, char arr[matrix_size][matrix_size]);
+int main()
+{
+
+char arr[matrix_size][matrix_size];
+
+for(int y = 0; y < matrix_size; y++)
+	for(int x = 0; x < matrix_size; x++)
+			arr[y][x] = ' '; //fill the matrix with -
+	
+   
+   //draw rectangle (63,60) length 30 wedth 10
+       rect (63, 60,30,10,arr);
+       
+   //draw line (3,3) to (33,13)
+       line(3,3,33,13,arr);
+       
+   //draw vertical Line at x=80
+       vertical_Line(80,13,23,arr);
+       
+   //draw circle center( 60,20) radius=10
+         circle(60,20,10,arr);
+        
+    //plot the matrix 
+	for(int y = 0; y < matrix_size; y++){
+	for(int x = 0; x < matrix_size; x++)
+		printf("%c",	arr[y][x]);
+	printf("\n");
+	}
+	
+	return 0;
+	
+	
+}
+
+
+//draw rectangle (x1,y1) length L wedth W
+void rect (int x1, int y1,int L,int W, char arr[matrix_size][matrix_size])
+{
+   
+	for(int y = 0; y < matrix_size; y++)
+	{
+		for(int x = 0; x < matrix_size; x++)
+		{
+			// see if we're within the range of x and y
+			if(x > x1 && x < x1+L && (y > y1 && y < y1+W))
+			{
+				arr[y][x] = '*';
+			}
+			
+		}
+	}
+	
+	
+}
+
+//draw circle center( a,b )  and radius=r
+void circle (int a, int b,int r, char arr[matrix_size][matrix_size])
+{
+
+   double EPSILON = 6;// need to be close to the radius value
+   
+
+	for(int y = 0; y < matrix_size; y++)
+	{
+		for(int x = 0; x < matrix_size; x++)
+		{
+			
+			// see if we're close to (x-a)**2 + (y-b)**2 == r**2
+
+			if( fabs(pow((x-a),2)+pow((y-b),2)-pow(r,2)) < EPSILON)
+			{
+			
+				arr[y][x] = '*';
+			}
+		}
+	}
+	
+}
+
+  //draw line (x1,y1) to (x2,y2)
+void line (int x1, int y1, int x2,int y2, char arr[matrix_size][matrix_size])
+{   
+  //0=y-m*x-c  
+   double EPSILON = 0.5, m, c;
+   m= (double) (y2-y1)/(x2-x1);  // the slope of the line
+   c=m*x1-y1;         //the y-intercept of the line
+  
+  
+	for(int y = 0; y < matrix_size; y++)
+	{
+		for(int x = 0; x < matrix_size; x++)
+		{
+			
+			// see if we're close to y = m*x + c
+			
+			
+			 if( x >= x1 && x <= x2 && fabs(y-m*x+c) < EPSILON)
+			{
+				arr[y][x] = '*';
+				
+			}
+			
+		}
+	}
+	
+}
+
+//drow Vertical line at x=x1 (x1,y1) to (x1,y2)
+void vertical_Line (int x1, int y1, int y2, char arr[matrix_size][matrix_size])
+{
+
+	for(int y = 0; y < matrix_size; y++)
+	{
+		for(int x = 0; x < matrix_size; x++)
+		{
+			
+			// if x=x1 virtical Line
+			 if( x == x1  && y<y2 && y>y1)
+			{
+				arr[y][x] = '*';
+			}	
+			
+		}
+	}
+	
+}
